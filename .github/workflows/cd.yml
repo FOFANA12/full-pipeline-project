@@ -1,4 +1,4 @@
-name: Pipeline CI/CD
+name: Pipeline CD
 
 on:
   workflow_run:
@@ -6,7 +6,11 @@ on:
     types:
       - completed
     branches:
-      - main
+      - test
+
+permissions:
+  contents: read
+  packages: write
 
 env:
   REGISTRY: ghcr.io
@@ -21,13 +25,15 @@ jobs:
     steps:
       - name: Récupération de code
         uses: actions/checkout@v6
+        with:
+          ref: main
 
       - name: Connexion a GHCR
         uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUBTOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build API image
         uses: docker/build-push-action@v7
@@ -54,6 +60,8 @@ jobs:
     steps:
       - name: Récupération de code
         uses: actions/checkout@v6
+        with:
+          ref: main
 
       - name: Copier docker compose prod
         uses: appleboy/scp-action@v1
@@ -72,11 +80,7 @@ jobs:
           key: ${{ secrets.V_KEY }}
           script: |
             cd /var/www/app
-            docker login ghcr.io -u fofana12 -p ${{ secrets.GITHUBTOKEN }}
+            docker login ghcr.io -u fofana12 -p ${{ secrets.GITHUB_TOKEN }}
             docker compose --env-file .env.prod -f docker-compose.prod.yml pull
             docker compose --env-file .env.prod -f docker-compose.prod.yml up -d
             docker image prune -af
-          
-
-
-    
