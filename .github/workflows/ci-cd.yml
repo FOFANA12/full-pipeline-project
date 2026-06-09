@@ -6,9 +6,13 @@ on:
       - main
 
 jobs:
-  test:
-    name: Exécution tests
+  test-api:
+    name: Exécution tests API
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: express-prisma-test-starter-new
+
     env:
       PORT: 3000
       DB_HOST: 127.0.0.1
@@ -52,7 +56,30 @@ jobs:
       - name: Exécution des migration
         run: npx prisma migrate deploy
 
-      - name: Exécution tests
+      - name: Exécution tests API
         run: npm test
+  build-fontend:
+    name: Build du Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vue-orders-manager
+    
+    steps:
+      - name: Récupération de code
+        uses: actions/checkout@v6
+
+      - name: Installation Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installation dépendances
+        run: npm install
+
+      - name: Build de App
+        run: npm run build
+
 
     
