@@ -46,6 +46,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: express-prisma-test-starter-new/package-lock.json
 
       - name: Installation dépendances
         run: npm install
@@ -77,6 +78,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: vue-orders-manager/package-lock.json
 
       - name: Installation dépendances
         run: npm install
