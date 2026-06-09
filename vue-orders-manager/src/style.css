@@ -1,0 +1,45 @@
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #f5f7fb;
+  color: #18212f;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.panel,
+.stat {
+  border: 1px solid #dee4ef;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgb(24 33 47 / 6%);
+}
+
+.panel {
+  padding: 1.25rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+}
+
+.stat strong {
+  font-size: 1.35rem;
+}
+
+.table > :not(caption) > * > * {
+  padding: 1rem;
+}
+
+.item-number-input {
+  max-width: 110px;
+}
