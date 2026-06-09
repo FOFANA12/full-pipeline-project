@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  OWNER: FOFANA12
+  OWNER: fofana12
 
 jobs:
   test-api:
@@ -112,7 +112,7 @@ jobs:
           context: ./express-prisma-test-starter-new
           file: ./express-prisma-test-starter-new/Dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.actor }}/api:latest
+          tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/api:latest
 
       - name: Build Frontend image
         uses: docker/build-push-action@v7
@@ -120,7 +120,7 @@ jobs:
           context: ./vue-orders-manager
           file: ./vue-orders-manager/Dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.actor }}/frontend:latest
+          tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/frontend:latest
           build-args: VITE_API_URL=http://77.42.122.227:4000/api
 
 
