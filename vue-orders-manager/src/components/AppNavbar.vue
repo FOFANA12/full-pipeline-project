@@ -8,7 +8,7 @@ defineEmits(["home"]);
       <a class="navbar-brand fw-semibold" href="#" @click.prevent="$emit('home')">
         Orders Frontend
       </a>
-      <span class="badge text-bg-primary">Vue 3 + Pinia + Bootstrap 5</span>
+      <!-- <span class="badge text-bg-primary">Vue 3 + Pinia + Bootstrap 5</span> -->
     </div>
   </nav>
 </template>
