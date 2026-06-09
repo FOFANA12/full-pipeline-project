@@ -58,9 +58,12 @@ jobs:
 
       - name: Exécution tests API
         run: npm test
+
   build-fontend:
     name: Build du Frontend
     runs-on: ubuntu-latest
+    needs: test-api
+    
     defaults:
       run:
         working-directory: vue-orders-manager
